@@ -8,5 +8,6 @@
 ### Create and destroy an hadoop cluster
 ```bash
 $ cd yaml/
+$ kubectl create configmap hadoop-config --from-file=hadoop-conf/
 $ kubectl create -f .
 ```
