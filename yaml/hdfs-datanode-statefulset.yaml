@@ -1,0 +1,67 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zengh-hadoop-dn
+  namespace: zengh-test
+  labels:
+    component: hadoop-dn
+spec:
+  ports:
+  - name: dfs
+    port: 9000
+    protocol: TCP
+  - name: webhdfs
+    port: 50075
+  - name: datanode-port
+    port: 50010
+  clusterIP: None
+  selector:
+    component: hadoop-dn
+---
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: zengh-hadoop-dn
+  namespace: zengh-test
+  labels:
+    component: hadoop-dn
+spec:
+  serviceName: zengh-hadoop-dn
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        component: hadoop-dn
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: component
+                operator: In
+                values:
+                - hadoop-dn
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: hadoop-dn
+        image: 192.168.213.146:5000/hadoop:3.0
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/start.sh"]
+        args: ["datanode"]
+        ports:       
+        - containerPort: 50010
+          name: datanode-port
+        volumeMounts:
+        - name: hadoop-conf
+          mountPath: /etc/config/hadoop-conf
+        - name: data
+          mountPath: /mnt
+      volumes:
+        - name: hadoop-conf
+          configMap:
+            name: hadoop-config
+        - name: data
+          hostPath:
+            path: /root/mnt/datanode

@@ -1,0 +1,81 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zengh-hadoop-rm
+  namespace: zengh-test
+  labels:
+    component: hadoop-rm
+spec:
+  ports:
+  - name: resourcemanager-address
+    port: 8032
+    protocol: TCP
+  - name: resource-tracker
+    port: 8025
+    protocol: TCP
+  - name: scheduler
+    port: 8030
+    protocol: TCP
+  - name: jobtracker
+    port: 8021
+    protocol: TCP
+  - name: web
+    port: 8088
+  clusterIP: None
+  selector:
+    component: hadoop-rm
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zengh-hadoop-rm-svc
+  namespace: zengh-test
+  labels:
+    component: hadoop-rm-svc
+spec:
+  ports:
+  - name: web-ui
+    port: 8088
+  - name: web-proxy
+    port: 20888
+  - name: log-url
+    port: 19888
+  - name: jobhistory
+    port: 10020
+  selector:
+    component: hadoop-rm
+---
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: zengh-hadoop-rm
+  namespace: zengh-test
+  labels:
+    component: hadoop-rm
+spec:
+  serviceName: zengh-hadoop-rm
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: hadoop-rm
+    spec:
+      containers:
+      - name: hadoop-rm
+        image: 192.168.213.146:5000/hadoop:3.0
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/start.sh"]
+        args: ["resourcemanager"]
+        volumeMounts:
+        - name: hadoop-conf
+          mountPath: /etc/config/hadoop-conf
+        - name: data
+          mountPath: /mnt
+      volumes:
+        - name: hadoop-conf
+          configMap:
+            name: hadoop-config
+        - name: data
+          hostPath:
+            path: /root/mnt/resourcemanage

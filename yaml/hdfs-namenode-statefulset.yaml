@@ -1,0 +1,54 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zengh-hadoop-nn
+  namespace: zengh-test
+  labels:
+    component: hadoop-nn
+spec:
+  ports:
+  - name: dfs
+    port: 9000
+    protocol: TCP
+  - name: webhdfs
+    port: 50070
+  - name: datanode-port
+    port: 50010
+  clusterIP: None
+  selector:
+    component: hadoop-nn
+---
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: zengh-hadoop-nn
+  namespace: zengh-test
+  labels:
+    component: hadoop-nn
+spec:
+  serviceName: zengh-hadoop-nn
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: hadoop-nn
+    spec:
+      containers:
+      - name: hadoop-nn
+        image: 192.168.213.146:5000/hadoop:4.0
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/start.sh"]
+        args: ["namenode"]
+        volumeMounts:
+        - name: hadoop-conf
+          mountPath: /etc/config/hadoop-conf
+        - name: data
+          mountPath: /mnt
+      volumes:
+        - name: hadoop-conf
+          configMap:
+            name: hadoop-config
+        - name: data
+          hostPath:             
+            path: /root/mnt/namenode

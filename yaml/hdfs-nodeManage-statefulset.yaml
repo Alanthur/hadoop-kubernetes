@@ -1,0 +1,63 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zengh-hadoop-nm
+  namespace: zengh-test
+  labels:
+    component: hadoop-nm
+spec:
+  ports:
+  - port: 8088
+    name: web
+  - port: 8082
+    name: web2
+  - port: 8042
+    name: api
+  clusterIP: None
+  selector:
+    component: hadoop-nm
+---
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: zengh-hadoop-nm
+  namespace: zengh-test
+  labels:
+    component: hadoop-nm
+spec:
+  serviceName: zengh-hadoop-nm
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        component: hadoop-nm
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: component
+                operator: In
+                values:
+                - hadoop-nm
+            topologyKey: "kubernetes.io/hostname" 
+      containers:
+      - name: hadoop-nm
+        image: 192.168.213.146:5000/hadoop:3.0
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/start.sh"]
+        args: ["nodemanager"]
+        volumeMounts:
+        - name: hadoop-conf
+          mountPath: /etc/config/hadoop-conf
+        - name: data
+          mountPath: /mnt
+      volumes:
+        - name: hadoop-conf
+          configMap:
+            name: hadoop-config
+        - name: data
+          hostPath:
+            path: /root/mnt/nodemanage
