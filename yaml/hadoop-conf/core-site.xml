@@ -6,7 +6,7 @@
   </property>
   <property>
     <name>fs.defaultFS</name>
-    <value>hdfs://zengh-hadoop-nn-0.zengh-hadoop-nn.zengh-test.svc.cluster.local:9000</value>
+    <value>hdfs://dahaian-hadoop-nn-0.dahaian-hadoop-nn.default.svc.cluster.local:9000</value>
   </property>
   <property>
     <name>fs.trash.interval</name>
@@ -14,7 +14,7 @@
   </property>
   <property>
     <name>hadoop.home</name>
-    <value>/opt/hadoop-2.5.0-cdh5.2.0</value>
+    <value>/opt/hadoop-2.7.5</value>
   </property>
   <property>
     <name>io.compression.codecs</name>
