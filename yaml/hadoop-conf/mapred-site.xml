@@ -6,7 +6,7 @@
   </property>
   <property>
     <name>mapreduce.jobhistory.address</name>
-    <value>zengh-hadoop-rm-0.zengh-hadoop-rm.zengh-test.svc.cluster.local:10020</value>
+    <value>dahaian-hadoop-rm-0.dahaian-hadoop-rm.default.svc.cluster.local:10020</value>
   </property>
   <property>
     <name>mapreduce.task.io.sort.factor</name>
@@ -22,7 +22,7 @@
   </property>
   <property>
     <name>mapreduce.jobtracker.address</name>
-    <value>zengh-hadoop-rm-0.zengh-hadoop-rm.zengh-test.svc.cluster.local:8021</value>
+    <value>dahaian-hadoop-rm-0.dahaian-hadoop-rm.default.svc.cluster.local:8021</value>
   </property>
   <property>
     <name>mapreduce.tasktracker.map.tasks.maximum</name>
@@ -78,7 +78,7 @@
   </property>
   <property>
     <name>mapreduce.jobhistory.webapp.address</name>
-    <value>zengh-hadoop-rm-0.zengh-hadoop-rm.zengh-test.svc.cluster.local:19888</value>
+    <value>dahaian-hadoop-rm-0.dahaian-hadoop-rm.default.svc.cluster.local:19888</value>
   </property>
   <property>
     <name>mapreduce.reduce.shuffle.parallelcopies</name>
