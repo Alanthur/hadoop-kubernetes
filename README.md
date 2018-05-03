@@ -5,7 +5,7 @@
 ## Demo
 
 ## Getting started
-### Create and destroy an hadoop cluster
+### Create an hadoop cluster
 ```bash
 $ cd yaml/
 $ kubectl create configmap hadoop-config --from-file=hadoop-conf/
