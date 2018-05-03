@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: zengh-hadoop-nn
+  name: dahaian-hadoop-nn
   labels:
     component: hadoop-nn
 spec:
@@ -21,11 +21,11 @@ spec:
 apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
-  name: zengh-hadoop-nn
+  name: dahaian-hadoop-nn
   labels:
     component: hadoop-nn
 spec:
-  serviceName: zengh-hadoop-nn
+  serviceName: dahaian-hadoop-nn
   replicas: 1
   template:
     metadata:
