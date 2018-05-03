@@ -63,7 +63,7 @@ spec:
     spec:
       containers:
       - name: hadoop-rm
-        image: 192.168.213.146:5000/hadoop:3.0
+        image: dahaian/hadoop:v2.7.5
         imagePullPolicy: IfNotPresent
         command: ["/bin/start.sh"]
         args: ["resourcemanager"]
