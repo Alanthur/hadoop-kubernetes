@@ -1,6 +1,6 @@
 # hadoop-kubernetes
 ## Requirements
-
+- hadoop 2.7.5
 - Kubernetes 1.8+
 ## Demo
 
