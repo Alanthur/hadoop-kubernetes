@@ -6,11 +6,11 @@
   </property>
   <property>
     <name>yarn.nodemanager.labels</name>
-    <value>zengh-hadoop-rm-0.zengh-hadoop-rm.zengh-test.svc.cluster.local</value>
+    <value>dahaian-hadoop-rm-0.dahaian-hadoop-rm.default.svc.cluster.local</value>
   </property>
   <property>
     <name>yarn.resourcemanager.bind-host</name>
-    <value>zengh-hadoop-rm-0.zengh-hadoop-rm.zengh-test.svc.cluster.local</value>
+    <value>dahaian-hadoop-rm-0.dahaian-hadoop-rm.default.svc.cluster.local</value>
   </property>
   <property>
     <name>yarn.nodemanager.remote-app-log-dir</name>
@@ -26,7 +26,7 @@
   </property>
   <property>
     <name>yarn.resourcemanager.hostname</name>
-    <value>zengh-hadoop-rm-0.zengh-hadoop-rm.zengh-test.svc.cluster.local</value>
+    <value>dahaian-hadoop-rm-0.dahaian-hadoop-rm.default.svc.cluster.local</value>
   </property>
   <property>
     <name>yarn.scheduler.increment-allocation-mb</name>
@@ -46,7 +46,7 @@
   </property>
   <property>
     <name>yarn.resourcemanager.address</name>
-    <value>zengh-hadoop-rm-0.zengh-hadoop-rm.zengh-test.svc.cluster.local:8032</value>
+    <value>dahaian-hadoop-rm-0.dahaian-hadoop-rm.default.svc.cluster.local:8032</value>
   </property>
   <property>
     <name>yarn.nodemanager.resource.cpu-vcores</name>
@@ -54,7 +54,7 @@
   </property>
    <property>
     <name>yarn.web-proxy.address</name>
-    <value>zengh-hadoop-rm-0.zengh-hadoop-rm.zengh-test.svc.cluster.local:20888</value>
+    <value>dahaian-hadoop-rm-0.dahaian-hadoop-rm.default.svc.cluster.local:20888</value>
   </property>
   <property>
     <name>yarn.log-aggregation.retain-seconds</name>
@@ -106,7 +106,7 @@
   </property>
   <property>
     <name>yarn.log.server.url</name>
-    <value>http://zengh-hadoop-rm-0.zengh-hadoop-rm.zengh-test.svc.cluster.local:19888/jobhistory/logs</value>
+    <value>http://dahaian-hadoop-rm-0.dahaian-hadoop-rm.default.svc.cluster.local:19888/jobhistory/logs</value>
   </property>
   <property>
     <name>yarn.nodemanager.container-metrics.enable</name>
@@ -130,11 +130,11 @@
   </property>
   <property>
     <name>yarn.resourcemanager.resource-tracker.address</name>
-    <value>zengh-hadoop-rm-0.zengh-hadoop-rm.zengh-test.svc.cluster.local:8025</value>
+    <value>dahaian-hadoop-rm-0.dahaian-hadoop-rm.default.svc.cluster.local:8025</value>
   </property>
   <property>
     <name>yarn.resourcemanager.scheduler.address</name>
-    <value>zengh-hadoop-rm-0.zengh-hadoop-rm.zengh-test.svc.cluster.local:8030</value>
+    <value>dahaian-hadoop-rm-0.dahaian-hadoop-rm.default.svc.cluster.local:8030</value>
   </property>
   <property>
     <name>yarn.nodemanager.aux-services</name>
