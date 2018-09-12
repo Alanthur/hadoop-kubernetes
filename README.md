@@ -1,3 +1,4 @@
+[简体中文说明](README中文.md)
 # hadoop-kubernetes
 ## Requirements
 - hadoop 2.7.5
